@@ -5,6 +5,7 @@ import HeroSection from "../components/HeroSection";
 import BestSellers from "@/components/BestSellers";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import BrandStory from "@/components/BrandStory";
 
 
 export default function HomePage() {
@@ -14,8 +15,9 @@ export default function HomePage() {
       <HeroSection />
       <FeaturedCollections />
       <BestSellers />
+      <BrandStory />
       <Footer />
-      
+
 
 
     </>
