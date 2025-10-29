@@ -20,7 +20,7 @@ export default function HeroSection() {
       {/* Balanced Overlay for Contrast */}
       <div className="absolute inset-0 bg-black/45 pointer-events-none" />
 
-      {/* Soft white gradient to add light */}
+      {/* Soft white gradient for luxury lighting */}
       <div className="absolute inset-0 bg-gradient-to-t from-white/10 via-transparent to-white/5 pointer-events-none" />
 
       {/* Content */}

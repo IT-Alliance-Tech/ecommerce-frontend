@@ -3,15 +3,20 @@
 import FeaturedCollections from "@/components/FeaturedCollections";
 import HeroSection from "../components/HeroSection";
 import BestSellers from "@/components/BestSellers";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 
 export default function HomePage() {
   return (
     <>
+     <Header />
       <HeroSection />
       <FeaturedCollections />
       <BestSellers />
+      <Footer />
       
+
 
     </>
   );
