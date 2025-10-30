@@ -89,7 +89,7 @@ export default function BestSellers() {
         <div className="mt-12">
           <a
             href="/products"
-            className="inline-block px-8 py-3 bg-gray-900 text-white rounded-full font-medium hover:bg-gray-800 transition shadow-lg"
+            className="inline-block px-8 py-3 rounded-full bg-[#d4af37] text-white font-medium hover:bg-[#c49c2d] transition-all shadow-md hover:shadow-lg"
           >
             View All Products
           </a>
