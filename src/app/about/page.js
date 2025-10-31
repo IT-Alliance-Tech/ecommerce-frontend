@@ -14,7 +14,7 @@ import craftsmanship1 from "../../../public/about2.png";
 import craftsmanship2 from "../../../public/about3.png";
 import craftsmanship3 from "../../../public/earrings.png";
 
-export default function AboutPage() {
+export default function About() {
   return (
     <>
       <Header />
