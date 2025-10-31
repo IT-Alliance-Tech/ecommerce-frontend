@@ -41,16 +41,26 @@ export default function Footer() {
               Quick Links
             </h3>
             <ul className="space-y-3 text-[15px]">
-              {["Home", "Collections", "About Us", "Contact"].map((name) => (
-                <li key={name}>
-                  <Link
-                    href="/"
-                    className="hover:text-[#d4af37] transition-all duration-300 hover:translate-x-1 inline-block"
-                  >
-                    {name}
-                  </Link>
-                </li>
-              ))}
+              <li>
+                <Link href="/" className="hover:text-[#d4af37] transition-all duration-300 hover:translate-x-1 inline-block">
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link href="/collections" className="hover:text-[#d4af37] transition-all duration-300 hover:translate-x-1 inline-block">
+                  Collections
+                </Link>
+              </li>
+              <li>
+                <Link href="/about" className="hover:text-[#d4af37] transition-all duration-300 hover:translate-x-1 inline-block">
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="hover:text-[#d4af37] transition-all duration-300 hover:translate-x-1 inline-block">
+                  Contact
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -60,20 +70,30 @@ export default function Footer() {
               Customer Care
             </h3>
             <ul className="space-y-3 text-[15px]">
-              {["Shipping & Returns", "FAQs", "Privacy Policy", "Terms of Service"].map((name) => (
-                <li key={name}>
-                  <Link
-                    href="#"
-                    className="hover:text-[#d4af37] transition-all duration-300 hover:translate-x-1 inline-block"
-                  >
-                    {name}
-                  </Link>
-                </li>
-              ))}
+              <li>
+                <Link href="/shipping-returns" className="hover:text-[#d4af37] transition-all duration-300 hover:translate-x-1 inline-block">
+                  Shipping & Returns
+                </Link>
+              </li>
+              <li>
+                <Link href="/faq" className="hover:text-[#d4af37] transition-all duration-300 hover:translate-x-1 inline-block">
+                  FAQs
+                </Link>
+              </li>
+              <li>
+                <Link href="/privacy-policy" className="hover:text-[#d4af37] transition-all duration-300 hover:translate-x-1 inline-block">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/terms-of-service" className="hover:text-[#d4af37] transition-all duration-300 hover:translate-x-1 inline-block">
+                  Terms of Service
+                </Link>
+              </li>
             </ul>
           </div>
 
-          {/* Contact Info (Newsletter removed) */}
+          {/* Contact Info */}
           <div>
             <h3 className="text-lg font-semibold mb-4 text-gray-900 relative after:content-[''] after:block after:w-10 after:h-[2px] after:bg-[#d4af37] after:mt-2">
               Get in Touch
@@ -104,7 +124,7 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Decorative Sparkles (for luxury shimmer) */}
+      {/* Decorative Sparkles */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <div className="absolute top-10 left-1/4 w-2 h-2 bg-[#d4af37]/70 rounded-full blur-[1px] animate-ping"></div>
         <div className="absolute bottom-16 right-1/3 w-2 h-2 bg-[#d4af37]/70 rounded-full blur-[1px] animate-ping"></div>

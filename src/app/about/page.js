@@ -20,7 +20,8 @@ export default function About() {
       <Header />
 
       {/* 🌟 Hero Section */}
-      <section className="relative h-[80vh] flex items-center justify-center text-center overflow-hidden">
+      <section className="relative h-[60vh] flex items-center justify-center text-center overflow-hidden mt-20">
+        {/* 👆 Added mt-20 to move the banner a bit lower */}
         <Image src={aboutHero} alt="About Us Hero" fill className="object-cover" />
         <div className="absolute inset-0 bg-black/50" />
         <motion.div
@@ -157,7 +158,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* 🌸 Why Choose Us Section (moved up) */}
+      {/* 🌸 Why Choose Us Section */}
       <section className="py-16 bg-white text-gray-900 text-center relative overflow-hidden -mt-10">
         <div className="absolute inset-0 bg-gradient-to-b from-[#fffaf3] via-white to-[#fff9ef]" />
         <motion.div
@@ -211,7 +212,7 @@ export default function About() {
         </motion.div>
       </section>
 
-      {/* 👑 Legacy Section (moved up slightly) */}
+      {/* 👑 Legacy Section */}
       <motion.section
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
