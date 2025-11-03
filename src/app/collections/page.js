@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
@@ -16,32 +16,38 @@ const collections = [
     name: "Diamond Elegance",
     description: "Timeless brilliance crafted to perfection.",
     image: diamondImg,
-    link: "/products#diamond", // ✅ will open diamond section
+    link: "diamond",
   },
   {
     id: 2,
     name: "Gold Radiance",
     description: "Embrace warmth and luxury with pure gold designs.",
     image: goldImg,
-    link: "/products#gold", // ✅ will open gold section
+    link: "gold",
   },
   {
     id: 3,
     name: "Bridal Collection",
     description: "Celebrate your love with our exquisite bridal jewelry.",
     image: bridalImg,
-    link: "/products#bridal", // ✅ will open bridal section
+    link: "bridal",
   },
   {
     id: 4,
     name: "Gemstone Grace",
     description: "Vibrant gemstones full of life and color.",
     image: gemstoneImg,
-    link: "/products#gemstone", // ✅ will open gemstone section
+    link: "gemstone",
   },
 ];
 
 export default function CollectionsPage() {
+  const router = useRouter();
+
+  const handleNavigate = (link) => {
+    router.push(`/products?collection=${link}`);
+  };
+
   return (
     <>
       <Header />
@@ -55,14 +61,16 @@ export default function CollectionsPage() {
           </h1>
 
           <p className="text-gray-600 max-w-2xl mx-auto mb-16 text-lg">
-            Discover our exclusive jewelry collections — each piece a symbol of elegance, passion, and craftsmanship.
+            Discover our exclusive jewelry collections — each piece a symbol of
+            elegance, passion, and craftsmanship.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
             {collections.map((item) => (
               <div
                 key={item.id}
-                className="group relative overflow-hidden rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-700 border border-[#f3e7c4]/70 hover:border-[#d4af37]/60"
+                onClick={() => handleNavigate(item.link)}
+                className="group relative overflow-hidden rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-700 border border-[#f3e7c4]/70 hover:border-[#d4af37]/60 cursor-pointer"
               >
                 <div className="relative w-full h-[380px]">
                   <Image
@@ -80,12 +88,9 @@ export default function CollectionsPage() {
                   </h3>
                   <p className="text-sm mb-4">{item.description}</p>
 
-                  <Link
-                    href={item.link}
-                    className="inline-block px-5 py-2 rounded-full bg-gradient-to-r from-[#d4af37] to-[#e2c77d] text-white font-medium hover:opacity-90 transition-all shadow-md"
-                  >
+                  <div className="inline-block px-5 py-2 rounded-full bg-gradient-to-r from-[#d4af37] to-[#e2c77d] text-white font-medium hover:opacity-90 transition-all shadow-md">
                     Explore Now
-                  </Link>
+                  </div>
                 </div>
               </div>
             ))}
