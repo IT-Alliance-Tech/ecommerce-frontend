@@ -1,11 +1,12 @@
 "use client";
 
+import { Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Image from "next/image";
-import { useSearchParams } from "next/navigation";
 
-// Import images
+// ✅ Import images
 import diamond1 from "../../../public/DiamondRing.png";
 import diamond2 from "../../../public/dimond1.png";
 import diamond3 from "../../../public/dimond2.png";
@@ -30,7 +31,8 @@ import gem2 from "../../../public/gemstone5.png";
 import gem3 from "../../../public/gemstone3.png";
 import gem4 from "../../../public/gemstone4.png";
 
-export default function ProductsPage() {
+// ✅ Separate component to use useSearchParams safely
+function ProductsContent() {
   const searchParams = useSearchParams();
   const collection = searchParams.get("collection") || "diamond";
 
@@ -174,10 +176,17 @@ export default function ProductsPage() {
     }
   };
 
+  return renderSection();
+}
+
+// ✅ Page component wrapped with Suspense
+export default function ProductsPage() {
   return (
     <>
       <Header />
-      {renderSection()}
+      <Suspense fallback={<div className="text-center mt-32 text-gray-500">Loading products...</div>}>
+        <ProductsContent />
+      </Suspense>
       <Footer />
     </>
   );
