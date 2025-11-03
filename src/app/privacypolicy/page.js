@@ -8,23 +8,23 @@ export default function PrivacyPolicy() {
     <>
       <Header />
 
-      {/* Page Section */}
+   
       <section className="bg-gradient-to-b from-[#fff5f7] to-[#ffeaf0] min-h-screen py-20 mt-20">
         <div className="max-w-5xl mx-auto px-6">
-          {/* Heading */}
-          <h1 className="text-5xl font-bold text-center text-gray-900 mb-10">
-            Privacy <span className="text-[#d4af37]">Policy</span>
-          </h1>
+          
+              <h1 className="text-5xl font-bold text-center text-gray-900 mb-10">
+              Privacy <span className="text-[#d4af37]">Policy</span>
+              </h1>
 
-          {/* Intro */}
-          <p className="text-center text-gray-600 text-lg mb-14 max-w-3xl mx-auto">
-            We value your trust and are committed to protecting your personal information.
-            Please read this Privacy Policy carefully to understand how we handle your data.
-          </p>
+        
+              <p className="text-center text-gray-600 text-lg mb-14 max-w-3xl mx-auto">
+              We value your trust and are committed to protecting your personal information.
+              Please read this Privacy Policy carefully to understand how we handle your data.
+              </p>
 
-          {/* Policy Cards */}
+         
           <div className="space-y-10">
-            {/* Card 1 */}
+           
             <div className="bg-white rounded-3xl shadow-lg p-8 border border-[#f3e7c4]/70 hover:border-[#d4af37]/60 transition-all duration-700">
               <h2 className="text-2xl font-semibold text-[#d4af37] mb-4">Information We Collect</h2>
               <p className="text-gray-700 leading-relaxed">
@@ -34,7 +34,7 @@ export default function PrivacyPolicy() {
               </p>
             </div>
 
-            {/* Card 2 */}
+        
             <div className="bg-white rounded-3xl shadow-lg p-8 border border-[#f3e7c4]/70 hover:border-[#d4af37]/60 transition-all duration-700">
               <h2 className="text-2xl font-semibold text-[#d4af37] mb-4">How We Use Your Information</h2>
               <p className="text-gray-700 leading-relaxed">
@@ -44,7 +44,7 @@ export default function PrivacyPolicy() {
               </p>
             </div>
 
-            {/* Card 3 */}
+           
             <div className="bg-white rounded-3xl shadow-lg p-8 border border-[#f3e7c4]/70 hover:border-[#d4af37]/60 transition-all duration-700">
               <h2 className="text-2xl font-semibold text-[#d4af37] mb-4">Data Protection</h2>
               <p className="text-gray-700 leading-relaxed">
@@ -54,7 +54,7 @@ export default function PrivacyPolicy() {
               </p>
             </div>
 
-            {/* Card 4 */}
+           
             <div className="bg-white rounded-3xl shadow-lg p-8 border border-[#f3e7c4]/70 hover:border-[#d4af37]/60 transition-all duration-700">
               <h2 className="text-2xl font-semibold text-[#d4af37] mb-4">Cookies</h2>
               <p className="text-gray-700 leading-relaxed">
@@ -64,7 +64,7 @@ export default function PrivacyPolicy() {
               </p>
             </div>
 
-            {/* Card 5 */}
+          
             <div className="bg-white rounded-3xl shadow-lg p-8 border border-[#f3e7c4]/70 hover:border-[#d4af37]/60 transition-all duration-700">
               <h2 className="text-2xl font-semibold text-[#d4af37] mb-4">Your Rights</h2>
               <p className="text-gray-700 leading-relaxed">
@@ -74,7 +74,7 @@ export default function PrivacyPolicy() {
               </p>
             </div>
 
-            {/* Card 6 */}
+
             <div className="bg-white rounded-3xl shadow-lg p-8 border border-[#f3e7c4]/70 hover:border-[#d4af37]/60 transition-all duration-700">
               <h2 className="text-2xl font-semibold text-[#d4af37] mb-4">Policy Updates</h2>
               <p className="text-gray-700 leading-relaxed">
@@ -84,7 +84,7 @@ export default function PrivacyPolicy() {
             </div>
           </div>
         </div>
-      </section>
+           </section>
 
       <Footer />
     </>
