@@ -81,12 +81,12 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/privacy-policy" className="hover:text-[#d4af37] transition-all duration-300 hover:translate-x-1 inline-block">
+                <Link href="/privacypolicy" className="hover:text-[#d4af37] transition-all duration-300 hover:translate-x-1 inline-block">
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link href="/terms-of-service" className="hover:text-[#d4af37] transition-all duration-300 hover:translate-x-1 inline-block">
+                <Link href="/termsofservice" className="hover:text-[#d4af37] transition-all duration-300 hover:translate-x-1 inline-block">
                   Terms of Service
                 </Link>
               </li>
