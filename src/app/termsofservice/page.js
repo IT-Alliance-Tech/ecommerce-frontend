@@ -9,12 +9,11 @@ export default function TermsOfService() {
     <>
       <Header />
 
-      {/* Adjusted margin-top and updated heading colors */}
-      <section className="bg-pink-50 min-h-screen py-20 mt-15 px-6 flex justify-center items-start">
-        <div className="max-w-4xl bg-white rounded-2xl shadow-lg p-10">
-          <h1 className="text-3xl font-bold text-center text-[#d4af37] mb-6">
+            <section className="bg-pink-50 min-h-screen py-20 mt-15 px-6 flex justify-center items-start">
+            <div className="max-w-4xl bg-white rounded-2xl shadow-lg p-10">
+            <h1 className="text-3xl font-bold text-center text-[#d4af37] mb-6">
             Terms of Service
-          </h1>
+            </h1>
 
           <p className="text-gray-700 text-center mb-10 leading-relaxed">
             Welcome to our jewelry store website. By accessing or using our
