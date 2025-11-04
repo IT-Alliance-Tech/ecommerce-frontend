@@ -1,6 +1,7 @@
 "use client";
 
 import { useSearchParams, useRouter } from "next/navigation";
+import { Suspense } from "react";
 import Image from "next/image";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -30,7 +31,17 @@ import gem2 from "../../../public/gemstone5.png";
 import gem3 from "../../../public/gemstone3.png";
 import gem4 from "../../../public/gemstone4.png";
 
+// ✅ Main Wrapper with Suspense boundary
 export default function ProductDetailsPage() {
+  return (
+    <Suspense fallback={<div className="text-center mt-32 text-lg text-gray-500">Loading product details...</div>}>
+      <ProductDetailsContent />
+    </Suspense>
+  );
+}
+
+// ✅ Moved logic inside this client-safe component
+function ProductDetailsContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -81,36 +92,21 @@ export default function ProductDetailsPage() {
         desc: "A perfect harmony of light, luxury, and artistry.",
         image: diamond4,
         price: 78000,
-        features: [
-          "Brilliant shine",
-          "Gold finish",
-          "Durable design",
-          "Elegant for every occasion",
-        ],
+        features: ["Brilliant shine", "Gold finish", "Durable design", "Elegant for every occasion"],
       },
       {
         name: "Infinity Shine",
         desc: "A modern symbol of endless beauty and devotion.",
         image: diamond5,
         price: 92000,
-        features: [
-          "Modern infinity style",
-          "Perfect polish",
-          "Certified diamond quality",
-          "Lightweight comfort",
-        ],
+        features: ["Modern infinity style", "Perfect polish", "Certified diamond quality", "Lightweight comfort"],
       },
       {
         name: "Luminous Charm",
         desc: "Graceful design that captures every heart.",
         image: diamond6,
         price: 88000,
-        features: [
-          "High polish diamond",
-          "Fine craftsmanship",
-          "Ideal for gifting",
-          "Long-lasting durability",
-        ],
+        features: ["High polish diamond", "Fine craftsmanship", "Ideal for gifting", "Long-lasting durability"],
       },
     ],
     gold: [
@@ -119,24 +115,14 @@ export default function ProductDetailsPage() {
         desc: "Pure gold artistry crafted for everyday elegance.",
         image: gold1,
         price: 45000,
-        features: [
-          "22K pure gold",
-          "Daily wear friendly",
-          "Skin-safe polish",
-          "Handcrafted design",
-        ],
+        features: ["22K pure gold", "Daily wear friendly", "Skin-safe polish", "Handcrafted design"],
       },
       {
         name: "Radiant Necklace",
         desc: "A stunning necklace that embodies grace and tradition.",
         image: gold2,
         price: 73000,
-        features: [
-          "Heavy gold detailing",
-          "Traditional touch",
-          "Durable chain lock",
-          "Perfect festive choice",
-        ],
+        features: ["Heavy gold detailing", "Traditional touch", "Durable chain lock", "Perfect festive choice"],
       },
       {
         name: "Sunshine Bangles",
@@ -150,36 +136,21 @@ export default function ProductDetailsPage() {
         desc: "Subtle sophistication with a golden touch.",
         image: gold4,
         price: 34000,
-        features: [
-          "Flexible fit",
-          "Premium polish",
-          "Smooth finishing",
-          "Minimal look",
-        ],
+        features: ["Flexible fit", "Premium polish", "Smooth finishing", "Minimal look"],
       },
       {
         name: "Twilight Earrings",
         desc: "Delicate drop earrings that define elegance.",
         image: gold5,
         price: 27000,
-        features: [
-          "Comfort hooks",
-          "Pure gold plating",
-          "Handcrafted",
-          "Perfect for casual and party wear",
-        ],
+        features: ["Comfort hooks", "Pure gold plating", "Handcrafted", "Perfect for casual and party wear"],
       },
       {
         name: "Royal Hoops",
         desc: "Minimal and magnificent, perfect for all occasions.",
         image: gold6,
         price: 32000,
-        features: [
-          "Perfectly round design",
-          "Glossy finish",
-          "Hypoallergenic",
-          "Durable clasp",
-        ],
+        features: ["Perfectly round design", "Glossy finish", "Hypoallergenic", "Durable clasp"],
       },
     ],
     bridal: [
@@ -200,36 +171,21 @@ export default function ProductDetailsPage() {
         image: bridal2,
         desc: "Elegant bridal necklace with intricate patterns.",
         price: 190000,
-        features: [
-          "Kundan style design",
-          "Handcrafted details",
-          "Gold plated",
-          "Exclusive design",
-        ],
+        features: ["Kundan style design", "Handcrafted details", "Gold plated", "Exclusive design"],
       },
       {
         name: "Eternal Queen",
         image: bridal3,
         desc: "Luxury bridal jewelry with a royal touch.",
         price: 230000,
-        features: [
-          "Multi-layered set",
-          "Genuine stones",
-          "Elegant finish",
-          "Wedding exclusive piece",
-        ],
+        features: ["Multi-layered set", "Genuine stones", "Elegant finish", "Wedding exclusive piece"],
       },
       {
         name: "Golden Symphony",
         image: bridal4,
         desc: "Classic gold-toned bridal necklace set.",
         price: 185000,
-        features: [
-          "Rich detailing",
-          "Durable make",
-          "Traditional yet trendy",
-          "Perfect for grand occasions",
-        ],
+        features: ["Rich detailing", "Durable make", "Traditional yet trendy", "Perfect for grand occasions"],
       },
     ],
     gemstone: [
@@ -238,54 +194,33 @@ export default function ProductDetailsPage() {
         image: gem1,
         desc: "Beautiful ruby gemstone ring crafted for charm.",
         price: 58000,
-        features: [
-          "Real ruby stone",
-          "Gold-plated finish",
-          "Elegant for gifting",
-          "Modern style",
-        ],
+        features: ["Real ruby stone", "Gold-plated finish", "Elegant for gifting", "Modern style"],
       },
       {
         name: "Emerald Essence",
         image: gem2,
         desc: "Emerald necklace that defines elegance.",
         price: 64000,
-        features: [
-          "Emerald centerpiece",
-          "Gold detailing",
-          "Comfort chain",
-          "Elegant look",
-        ],
+        features: ["Emerald centerpiece", "Gold detailing", "Comfort chain", "Elegant look"],
       },
       {
         name: "Sapphire Dream",
         image: gem3,
         desc: "Blue sapphire ring crafted with precision.",
         price: 72000,
-        features: [
-          "Sapphire gem",
-          "Durable polish",
-          "Smooth edges",
-          "Everyday wear",
-        ],
+        features: ["Sapphire gem", "Durable polish", "Smooth edges", "Everyday wear"],
       },
       {
         name: "Amethyst Aura",
         image: gem4,
         desc: "Amethyst pendant that glows with light.",
         price: 69000,
-        features: [
-          "Purple hue design",
-          "Unique cut",
-          "Lightweight",
-          "Perfect for evening wear",
-        ],
+        features: ["Purple hue design", "Unique cut", "Lightweight", "Perfect for evening wear"],
       },
     ],
   };
 
-  const product =
-    collectionsData[collection]?.find((p) => p.name === productName) || null;
+  const product = collectionsData[collection]?.find((p) => p.name === productName) || null;
 
   if (!product) {
     return (
@@ -320,9 +255,7 @@ export default function ProductDetailsPage() {
   // ✅ Add to Wishlist
   const handleAddToWishlist = () => {
     const existingWishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-    const alreadyAdded = existingWishlist.find(
-      (item) => item.name === product.name
-    );
+    const alreadyAdded = existingWishlist.find((item) => item.name === product.name);
 
     if (!alreadyAdded) {
       existingWishlist.push({
@@ -357,20 +290,14 @@ export default function ProductDetailsPage() {
 
           {/* ✅ Right Side: Details */}
           <div>
-            <h1 className="text-5xl font-bold text-gray-900 mb-4">
-              {product.name}
-            </h1>
-            <p className="text-lg text-gray-600 leading-relaxed mb-6">
-              {product.desc}
-            </p>
+            <h1 className="text-5xl font-bold text-gray-900 mb-4">{product.name}</h1>
+            <p className="text-lg text-gray-600 leading-relaxed mb-6">{product.desc}</p>
 
             <p className="text-3xl font-semibold text-[#d4af37] mb-8">
               ₹{product.price.toLocaleString()}
             </p>
 
-            <h3 className="text-xl font-semibold text-gray-800 mb-3">
-              Features:
-            </h3>
+            <h3 className="text-xl font-semibold text-gray-800 mb-3">Features:</h3>
             <ul className="list-disc list-inside text-gray-700 space-y-2 mb-10">
               {product.features.map((feature, i) => (
                 <li key={i}>{feature}</li>
@@ -399,9 +326,7 @@ export default function ProductDetailsPage() {
               {/* ✅ Centered Back to Collection */}
               <div className="flex justify-center">
                 <button
-                  onClick={() =>
-                    router.push(`/products?collection=${collection}`)
-                  }
+                  onClick={() => router.push(`/products?collection=${collection}`)}
                   className="mt-6 px-10 py-3 border-2 border-[#d4af37] text-[#d4af37] text-lg font-semibold rounded-full hover:bg-[#d4af37] hover:text-white transition-all duration-300"
                 >
                   Back to Collection
