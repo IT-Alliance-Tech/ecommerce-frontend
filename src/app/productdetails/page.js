@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Image from "next/image";
 import Header from "@/components/Header";
@@ -30,14 +31,14 @@ import gem2 from "../../../public/gemstone5.png";
 import gem3 from "../../../public/gemstone3.png";
 import gem4 from "../../../public/gemstone4.png";
 
-export default function ProductDetailsPage() {
+// ✅ Wrap your logic in a Suspense-safe component
+function ProductDetailsContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
   const collection = searchParams.get("collection");
   const productName = searchParams.get("product");
 
-  // ✅ All product data with name, price, description, features
   const collectionsData = {
     diamond: [
       {
@@ -289,8 +290,7 @@ export default function ProductDetailsPage() {
     ],
   };
 
-  const product =
-    collectionsData[collection]?.find((p) => p.name === productName) || null;
+  const product = collectionsData[collection]?.find((p) => p.name === productName) || null;
 
   if (!product) {
     return (
@@ -311,7 +311,6 @@ export default function ProductDetailsPage() {
   return (
     <>
       <Header />
-
       <section className="min-h-screen bg-gradient-to-b from-[#fffaf3] to-[#fff5eb] pt-36 pb-24 px-6">
         <div className="max-w-6xl mx-auto bg-white/90 rounded-3xl shadow-2xl overflow-hidden grid md:grid-cols-2 gap-12 p-10 border border-[#f3e7c4]">
           <div className="flex justify-center items-center">
@@ -326,20 +325,11 @@ export default function ProductDetailsPage() {
           </div>
 
           <div>
-            <h1 className="text-5xl font-bold text-gray-900 mb-4">
-              {product.name}
-            </h1>
-            <p className="text-lg text-gray-600 leading-relaxed mb-6">
-              {product.desc}
-            </p>
+            <h1 className="text-5xl font-bold text-gray-900 mb-4">{product.name}</h1>
+            <p className="text-lg text-gray-600 leading-relaxed mb-6">{product.desc}</p>
+            <p className="text-3xl font-semibold text-[#d4af37] mb-8">₹{product.price.toLocaleString()}</p>
 
-            <p className="text-3xl font-semibold text-[#d4af37] mb-8">
-              ₹{product.price.toLocaleString()}
-            </p>
-
-            <h3 className="text-xl font-semibold text-gray-800 mb-3">
-              Features:
-            </h3>
+            <h3 className="text-xl font-semibold text-gray-800 mb-3">Features:</h3>
             <ul className="list-disc list-inside text-gray-700 space-y-2 mb-10">
               {product.features.map((feature, i) => (
                 <li key={i}>{feature}</li>
@@ -364,8 +354,16 @@ export default function ProductDetailsPage() {
           </div>
         </div>
       </section>
-
       <Footer />
     </>
+  );
+}
+
+// ✅ Wrap the component in Suspense to fix the Next.js build error
+export default function ProductDetailsPage() {
+  return (
+    <Suspense fallback={<div className="text-center py-20 text-gray-600 text-xl">Loading product details...</div>}>
+      <ProductDetailsContent />
+    </Suspense>
   );
 }
