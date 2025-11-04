@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Image from "next/image";
+import Link from "next/link"; // ✅ Added import for navigation
 
 // ✅ Import images
 import diamond1 from "../../../public/DiamondRing.png";
@@ -31,11 +32,11 @@ import gem2 from "../../../public/gemstone5.png";
 import gem3 from "../../../public/gemstone3.png";
 import gem4 from "../../../public/gemstone4.png";
 
-// ✅ Separate component to use useSearchParams safely
 function ProductsContent() {
   const searchParams = useSearchParams();
   const collection = searchParams.get("collection") || "diamond";
 
+  // 🩶 Data
   const diamondCollections = [
     { name: "Celestial Spark", desc: "Radiating brilliance inspired by starlit nights.", image: diamond1 },
     { name: "Eternal Grace", desc: "An elegant statement of everlasting love.", image: diamond2 },
@@ -82,18 +83,28 @@ function ProductsContent() {
 
             <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 px-6">
               {diamondCollections.map((item, index) => (
-                <div
+                <Link
                   key={index}
-                  className="group bg-white rounded-3xl shadow-xl hover:shadow-2xl border border-[#f3e7c4]/80 hover:border-[#d4af37]/60 transition-all duration-700 overflow-hidden transform hover:-translate-y-2"
+                  href={{
+                    pathname: "/productdetails",
+                    query: { collection: "diamond", product: item.name },
+                  }}
                 >
-                  <div className="relative w-full h-[340px]">
-                    <Image src={item.image} alt={item.name} fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
+                  <div className="group bg-white rounded-3xl shadow-xl hover:shadow-2xl border border-[#f3e7c4]/80 hover:border-[#d4af37]/60 transition-all duration-700 overflow-hidden transform hover:-translate-y-2 cursor-pointer">
+                    <div className="relative w-full h-[340px]">
+                      <Image
+                        src={item.image}
+                        alt={item.name}
+                        fill
+                        className="object-cover group-hover:scale-110 transition-transform duration-700"
+                      />
+                    </div>
+                    <div className="p-6 text-left">
+                      <h3 className="text-2xl font-semibold text-[#d4af37] mb-2">{item.name}</h3>
+                      <p className="text-gray-600 text-sm">{item.desc}</p>
+                    </div>
                   </div>
-                  <div className="p-6 text-left">
-                    <h3 className="text-2xl font-semibold text-[#d4af37] mb-2">{item.name}</h3>
-                    <p className="text-gray-600 text-sm">{item.desc}</p>
-                  </div>
-                </div>
+                </Link>
               ))}
             </div>
           </section>
@@ -111,16 +122,25 @@ function ProductsContent() {
 
             <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 px-6">
               {goldCollections.map((item, i) => (
-                <div
+                <Link
                   key={i}
-                  className="group relative rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-700 border border-[#f3e7c4]/70 hover:border-[#d4af37]/60"
+                  href={{
+                    pathname: "/productdetails",
+                    query: { collection: "gold", product: item.name },
+                  }}
                 >
-                  <Image src={item.image} alt={item.name} className="object-cover w-full h-[400px] group-hover:scale-110 transition-transform duration-700" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700 flex flex-col justify-end p-6">
-                    <h3 className="text-2xl font-semibold text-[#d4af37]">{item.name}</h3>
-                    <p className="text-sm text-gray-100">{item.desc}</p>
+                  <div className="group relative rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-700 border border-[#f3e7c4]/70 hover:border-[#d4af37]/60 cursor-pointer">
+                    <Image
+                      src={item.image}
+                      alt={item.name}
+                      className="object-cover w-full h-[400px] group-hover:scale-110 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700 flex flex-col justify-end p-6">
+                      <h3 className="text-2xl font-semibold text-[#d4af37]">{item.name}</h3>
+                      <p className="text-sm text-gray-100">{item.desc}</p>
+                    </div>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </section>
@@ -138,9 +158,21 @@ function ProductsContent() {
 
             <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-10 mt-14 px-6">
               {bridalCollections.map((item, i) => (
-                <div key={i} className="relative overflow-hidden rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-700 group">
-                  <Image src={item.image} alt={`Bridal ${i + 1}`} className="object-contain w-full h-[480px] bg-white group-hover:scale-105 transition-transform duration-700" />
-                </div>
+                <Link
+                  key={i}
+                  href={{
+                    pathname: "/productdetails",
+                    query: { collection: "bridal", product: `Bridal ${i + 1}` },
+                  }}
+                >
+                  <div className="relative overflow-hidden rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-700 group cursor-pointer">
+                    <Image
+                      src={item.image}
+                      alt={`Bridal ${i + 1}`}
+                      className="object-contain w-full h-[480px] bg-white group-hover:scale-105 transition-transform duration-700"
+                    />
+                  </div>
+                </Link>
               ))}
             </div>
           </section>
@@ -158,14 +190,25 @@ function ProductsContent() {
 
             <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[320px]">
               {gemstoneCollections.map((item, i) => (
-                <div
+                <Link
                   key={i}
-                  className={`relative overflow-hidden rounded-3xl shadow-xl hover:shadow-2xl border border-[#f3e7c4]/70 hover:border-[#d4af37]/60 group transition-all duration-700 ${
-                    i % 2 === 0 ? "lg:row-span-2 h-[650px]" : "h-[320px]"
-                  }`}
+                  href={{
+                    pathname: "/productdetails",
+                    query: { collection: "gemstone", product: `Gemstone ${i + 1}` },
+                  }}
                 >
-                  <Image src={item.image} alt={`Gemstone ${i + 1}`} className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-700" />
-                </div>
+                  <div
+                    className={`relative overflow-hidden rounded-3xl shadow-xl hover:shadow-2xl border border-[#f3e7c4]/70 hover:border-[#d4af37]/60 group transition-all duration-700 cursor-pointer ${
+                      i % 2 === 0 ? "lg:row-span-2 h-[650px]" : "h-[320px]"
+                    }`}
+                  >
+                    <Image
+                      src={item.image}
+                      alt={`Gemstone ${i + 1}`}
+                      className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-700"
+                    />
+                  </div>
+                </Link>
               ))}
             </div>
           </section>
@@ -179,7 +222,6 @@ function ProductsContent() {
   return renderSection();
 }
 
-// ✅ Page component wrapped with Suspense
 export default function ProductsPage() {
   return (
     <>
