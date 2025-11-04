@@ -1,6 +1,5 @@
 "use client";
 
-import { Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Image from "next/image";
 import Header from "@/components/Header";
@@ -31,14 +30,14 @@ import gem2 from "../../../public/gemstone5.png";
 import gem3 from "../../../public/gemstone3.png";
 import gem4 from "../../../public/gemstone4.png";
 
-// ✅ Wrap your logic in a Suspense-safe component
-function ProductDetailsContent() {
+export default function ProductDetailsPage() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
   const collection = searchParams.get("collection");
   const productName = searchParams.get("product");
 
+  // ✅ All product data
   const collectionsData = {
     diamond: [
       {
@@ -144,12 +143,7 @@ function ProductDetailsContent() {
         desc: "Classic gold bangles crafted for timeless appeal.",
         image: gold3,
         price: 52000,
-        features: [
-          "Set of two",
-          "Solid gold",
-          "Elegant design",
-          "Comfort fit",
-        ],
+        features: ["Set of two", "Solid gold", "Elegant design", "Comfort fit"],
       },
       {
         name: "Charm Bracelet",
@@ -290,7 +284,8 @@ function ProductDetailsContent() {
     ],
   };
 
-  const product = collectionsData[collection]?.find((p) => p.name === productName) || null;
+  const product =
+    collectionsData[collection]?.find((p) => p.name === productName) || null;
 
   if (!product) {
     return (
@@ -304,15 +299,51 @@ function ProductDetailsContent() {
     );
   }
 
+  // ✅ Add to Cart
   const handleAddToCart = () => {
-    alert(`${product.name} added to cart!`);
+    const existingCart = JSON.parse(localStorage.getItem("cart")) || [];
+    const alreadyAdded = existingCart.find((item) => item.name === product.name);
+
+    if (!alreadyAdded) {
+      existingCart.push({
+        name: product.name,
+        price: product.price,
+        image: product.image.src || product.image,
+      });
+      localStorage.setItem("cart", JSON.stringify(existingCart));
+      alert(`${product.name} added to cart!`);
+    } else {
+      alert(`${product.name} is already in your cart!`);
+    }
+  };
+
+  // ✅ Add to Wishlist
+  const handleAddToWishlist = () => {
+    const existingWishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+    const alreadyAdded = existingWishlist.find(
+      (item) => item.name === product.name
+    );
+
+    if (!alreadyAdded) {
+      existingWishlist.push({
+        name: product.name,
+        price: product.price,
+        image: product.image.src || product.image,
+      });
+      localStorage.setItem("wishlist", JSON.stringify(existingWishlist));
+      alert(`${product.name} added to wishlist!`);
+    } else {
+      alert(`${product.name} is already in your wishlist!`);
+    }
   };
 
   return (
     <>
       <Header />
+
       <section className="min-h-screen bg-gradient-to-b from-[#fffaf3] to-[#fff5eb] pt-36 pb-24 px-6">
         <div className="max-w-6xl mx-auto bg-white/90 rounded-3xl shadow-2xl overflow-hidden grid md:grid-cols-2 gap-12 p-10 border border-[#f3e7c4]">
+          {/* ✅ Left Side: Image */}
           <div className="flex justify-center items-center">
             <div className="relative w-[420px] h-[420px] rounded-3xl bg-white border border-[#f3e7c4] shadow-xl overflow-hidden">
               <Image
@@ -324,46 +355,64 @@ function ProductDetailsContent() {
             </div>
           </div>
 
+          {/* ✅ Right Side: Details */}
           <div>
-            <h1 className="text-5xl font-bold text-gray-900 mb-4">{product.name}</h1>
-            <p className="text-lg text-gray-600 leading-relaxed mb-6">{product.desc}</p>
-            <p className="text-3xl font-semibold text-[#d4af37] mb-8">₹{product.price.toLocaleString()}</p>
+            <h1 className="text-5xl font-bold text-gray-900 mb-4">
+              {product.name}
+            </h1>
+            <p className="text-lg text-gray-600 leading-relaxed mb-6">
+              {product.desc}
+            </p>
 
-            <h3 className="text-xl font-semibold text-gray-800 mb-3">Features:</h3>
+            <p className="text-3xl font-semibold text-[#d4af37] mb-8">
+              ₹{product.price.toLocaleString()}
+            </p>
+
+            <h3 className="text-xl font-semibold text-gray-800 mb-3">
+              Features:
+            </h3>
             <ul className="list-disc list-inside text-gray-700 space-y-2 mb-10">
               {product.features.map((feature, i) => (
                 <li key={i}>{feature}</li>
               ))}
             </ul>
 
-            <div className="flex flex-wrap gap-4">
-              <button
-                onClick={handleAddToCart}
-                className="px-10 py-3 bg-[#d4af37] text-white text-lg font-semibold rounded-full shadow-lg hover:bg-[#c39b2b] transition-all duration-300"
-              >
-                Add to Cart
-              </button>
+            {/* ✅ Buttons Section */}
+            <div className="flex flex-col gap-4">
+              {/* Add to Cart + Wishlist horizontally */}
+              <div className="flex flex-col md:flex-row gap-4">
+                <button
+                  onClick={handleAddToCart}
+                  className="px-10 py-3 bg-[#d4af37] text-white text-lg font-semibold rounded-full shadow-lg hover:bg-[#c39b2b] transition-all duration-300"
+                >
+                  Add to Cart
+                </button>
 
-              <button
-                onClick={() => router.push(`/products?collection=${collection}`)}
-                className="px-10 py-3 border-2 border-[#d4af37] text-[#d4af37] text-lg font-semibold rounded-full hover:bg-[#d4af37] hover:text-white transition-all duration-300"
-              >
-                Back to Collection
-              </button>
+                <button
+                  onClick={handleAddToWishlist}
+                  className="px-10 py-3 bg-white text-[#d4af37] border-2 border-[#d4af37] text-lg font-semibold rounded-full shadow-lg hover:bg-[#d4af37] hover:text-white transition-all duration-300"
+                >
+                  Add to Wishlist
+                </button>
+              </div>
+
+              {/* ✅ Centered Back to Collection */}
+              <div className="flex justify-center">
+                <button
+                  onClick={() =>
+                    router.push(`/products?collection=${collection}`)
+                  }
+                  className="mt-6 px-10 py-3 border-2 border-[#d4af37] text-[#d4af37] text-lg font-semibold rounded-full hover:bg-[#d4af37] hover:text-white transition-all duration-300"
+                >
+                  Back to Collection
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </section>
+
       <Footer />
     </>
-  );
-}
-
-// ✅ Wrap the component in Suspense to fix the Next.js build error
-export default function ProductDetailsPage() {
-  return (
-    <Suspense fallback={<div className="text-center py-20 text-gray-600 text-xl">Loading product details...</div>}>
-      <ProductDetailsContent />
-    </Suspense>
   );
 }
